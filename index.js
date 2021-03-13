@@ -2,7 +2,6 @@ var express = require("express");
 var app = express();
 var cors = require("cors");
 var pool = require("./db");
-require("dotenv").config({ path: "./process.env" });
 const port = process.env.PORT || 5000;
 
 var axios = require("axios");
