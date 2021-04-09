@@ -2,9 +2,9 @@ var express = require("express");
 var app = express();
 var cors = require("cors");
 var pool = require("./db");
-const { API_PORT } = process.env;
-
 var axios = require("axios");
+const { bulkScript } = require("./bulkscript.js");
+const { API_PORT } = process.env;
 
 //MIDDLEWARE//
 app.use(cors());
@@ -205,4 +205,5 @@ app.post("/addactivity", async (req, res) => {
 
 app.listen(process.env.PORT || API_PORT, () => {
   console.log(`Server has started on port ${process.env.PORT || API_PORT}`);
+  bulkScript();
 });
