@@ -2,7 +2,7 @@ var express = require("express");
 var app = express();
 var cors = require("cors");
 var pool = require("./db");
-const port = process.env.PORT || 5000;
+const { API_PORT } = process.env;
 
 var axios = require("axios");
 
@@ -203,6 +203,6 @@ app.post("/addactivity", async (req, res) => {
   }
 });
 
-app.listen(port, () => {
+app.listen(process.env.PORT || API_PORT, () => {
   console.log(`Server has started on port ${port}`);
 });
