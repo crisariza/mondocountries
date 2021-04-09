@@ -204,5 +204,5 @@ app.post("/addactivity", async (req, res) => {
 });
 
 app.listen(process.env.PORT || API_PORT, () => {
-  console.log(`Server has started on port ${port}`);
+  console.log(`Server has started on port ${process.env.PORT || API_PORT}`);
 });
