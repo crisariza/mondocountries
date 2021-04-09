@@ -1,2 +1,4 @@
 # Mondo Countries Back End
-If you want to checkout the backend: https://github.com/criiz8/mondo-back
+
+Live Site: https://mondocountries.netlify.app
+Frontend: https://github.com/criiz8/front-back
