@@ -1,3 +1,5 @@
+var pool = require("./db");
+
 async function bulkScript() {
   await pool.query(
     "CREATE TABLE IF NOT EXISTS countries(country_id SERIAL PRIMARY KEY, alpha3code VARCHAR(3), name VARCHAR(255), flag VARCHAR(255), capital VARCHAR(255), region VARCHAR(255), subregion VARCHAR(255), area DECIMAL, population INTEGER)"
