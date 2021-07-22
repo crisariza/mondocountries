@@ -4,4 +4,4 @@
 
 - 📚 Check it out at https://mondocountries.netlify.app
 - 💡 Made with React, PostgreSQL and Sequelize
-- 🌐 Front End: https://github.com/criiz8/front-back
+- 🌐 Front End: https://github.com/crisariza/front-back
