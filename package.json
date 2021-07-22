@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha tests/**.js"
   },
-  "author": "criiz",
+  "author": "cristianariza",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.21.1",
