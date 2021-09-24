@@ -34,7 +34,7 @@ app.get("/countries/:id", async (req, res) => {
     );
     if (countries.rows.length === 0) {
       const restcountries = await axios.get(
-        "https://restcountries.com/rest/v2/all"
+        "https://restcountries.com/v2/all"
       );
       for (let i = 0; i < restcountries.data.length; i++) {
         let {
