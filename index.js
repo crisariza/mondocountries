@@ -40,16 +40,16 @@ app.get("/countries/:id", async (req, res) => {
         let {
           alpha3Code,
           name,
-          flag,
+          flags,
           capital,
           region,
-          subregion,
+          continent,
           area,
           population,
         } = restcountries.data[i];
         await pool.query(
           "INSERT INTO countries (alpha3code, name, flag, capital, region, subregion, area, population) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)",
-          [alpha3Code, name, flag, capital, region, subregion, area, population]
+          [alpha3Code, name, flags[1], capital, continent, region, area, population]
         );
       }
     }
