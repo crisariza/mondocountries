@@ -1,0 +1,18 @@
+body {
+  margin: 0;
+  background-color: #e9eef2;
+  font-family: PT Mono, monospace;
+  text-align: center;
+}
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+a {
+  color: #161616;
+  text-decoration: none;
+}
+::placeholder {
+  color: white;
+}

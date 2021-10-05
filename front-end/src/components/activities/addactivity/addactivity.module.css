@@ -1,0 +1,144 @@
+/*===== LAYOUT =====*/
+.bd_grid {
+  max-width: 500px;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-column-gap: 2rem;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+.min {
+  height: calc(100vh - 171px);
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+  display: -webkit-box;
+}
+.max {
+  margin-top: 0rem;
+  margin-bottom: 2rem;
+}
+.input {
+  width: 100%;
+}
+.title {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 12px rgb(0 0 0 / 15%);
+  background-color: #161616;
+  color: #fff;
+  border: none;
+  height: 2rem;
+}
+.title ::placeholder {
+  color: #fff;
+}
+.button {
+  background-color: #757575;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 12px rgb(0 0 0 / 15%);
+  border: none;
+  display: flex;
+  float: left;
+  cursor: pointer;
+  color: #fff;
+}
+.addCountry {
+  height: 2rem;
+  width: 100%;
+  display: table-cell;
+}
+.select {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 12px rgb(0 0 0 / 15%);
+  background-color: #161616;
+  color: #fff;
+  margin-bottom: 1rem;
+  border: none;
+}
+.margin {
+  margin-right: 1rem;
+}
+.submit {
+  height: 3rem;
+  width: 100%;
+  margin-top: 2rem;
+  background-color: #063e7a;
+  display: table-cell;
+}
+.form {
+  background-color: #fcfcfc;
+  box-shadow: 0 0 12px rgb(0 0 0 / 15%);
+  padding: 2rem;
+  border-radius: 1rem;
+  margin-bottom: 0px;
+}
+.h2title {
+  margin-top: 0;
+}
+input[type="range"] {
+  width: 100%;
+}
+.difficultyh2 {
+  margin-bottom: 0.7rem;
+}
+.durationh2 {
+  margin-top: 1rem;
+}
+/* stars */
+@import "~font-awesome/css/font-awesome.min.css";
+
+.difficulty {
+  margin-left: -22rem;
+  width: 100%;
+}
+.difficulty:not(:checked) > input {
+  position: absolute;
+  top: -9999px;
+}
+.difficulty:not(:checked) > label {
+  float: right;
+  width: 1em;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 30px;
+  color: #ccc;
+}
+.difficulty:not(:checked) > label:before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  font-size: 20px;
+  content: "\f005";
+}
+.difficulty > input:checked ~ label {
+  color: #ffc700;
+}
+.difficulty:not(:checked) > label:hover,
+.difficulty:not(:checked) > label:hover ~ label {
+  color: #deb217;
+}
+.difficulty > input:checked + label:hover,
+.difficulty > input:checked + label:hover ~ label,
+.difficulty > input:checked ~ label:hover,
+.difficulty > input:checked ~ label:hover ~ label,
+.difficulty > label:hover ~ input:checked ~ label {
+  color: #c59b08;
+}
+@media only screen and (max-width: 600px) {
+  .form {
+    padding: 0.5rem;
+    margin: 0.3rem;
+    margin-top: 1rem;
+    margin-bottom: 3.5rem;
+  }
+  .bd_grid {
+    width: auto;
+  }
+  .difficulty {
+    margin-left: -12.5rem;
+  }
+}

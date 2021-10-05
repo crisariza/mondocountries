@@ -1,0 +1,30 @@
+/*===== LAYOUT =====*/
+.bd_grid {
+  max-width: 1400px;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-column-gap: 2rem;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2rem;
+}
+.side {
+  display: flex;
+  justify-content: space-between;
+}
+.activities {
+  margin: 0;
+}
+<<<<<<< HEAD
+
+=======
+>>>>>>> c0368dc553332f65ed203dd4c627774d85f7b274
+@media only screen and (max-width: 600px) {
+  .side {
+    display: block;
+  }
+  .bd_grid {
+    margin-top: 0;
+  }
+}

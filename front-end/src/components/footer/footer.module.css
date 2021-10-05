@@ -1,0 +1,54 @@
+/*===== LAYOUT =====*/
+.bd_grid {
+  max-width: 1400px;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-column-gap: 2rem;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #161616;
+  position: inherit;
+  left: 0;
+  bottom: 0;
+}
+
+.flex {
+  background-color: #161616;
+  color: #fff;
+}
+.icons {
+  color: #fff;
+}
+.ig {
+  color: #fff;
+  padding-right: 1rem;
+}
+.test {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+.copy {
+  margin-right: 0.5rem;
+  font-size: 12px;
+}
+.icons {
+  font-size: 20px;
+}
+.text {
+  margin-top: 0.15rem;
+}
+.icons:hover {
+  color: #b3b3b3;
+}
+@media only screen and (max-width: 600px) {
+  .icons {
+    margin: 0.3rem;
+  }
+  .test {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+}

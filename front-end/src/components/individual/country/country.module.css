@@ -1,0 +1,43 @@
+/*===== LAYOUT =====*/
+.bd_grid {
+  max-width: 1400px;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-column-gap: 2rem;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2rem;
+}
+.data {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.activities {
+  width: 400px;
+}
+.title {
+  margin-top: 0;
+}
+.img img {
+  width: 500px;
+  height: 300px;
+}
+@media only screen and (max-width: 600px) {
+  .img img {
+    width: 363px;
+    height: 218px;
+  }
+  .img {
+    margin: 0.3rem;
+  }
+  .data {
+    display: block;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+  }
+  .activities {
+    width: 100%;
+  }
+}

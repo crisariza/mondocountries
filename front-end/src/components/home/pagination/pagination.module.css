@@ -1,0 +1,23 @@
+.each {
+  padding: 0.5rem;
+  background-color: #e9eef2;
+  color: #161616;
+  border-radius: 2rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 1rem;
+  text-align: center;
+  display: inline-block;
+  box-shadow: 0 0 12px rgb(0 0 0 / 15%);
+  margin-bottom: 2rem;
+}
+.each:hover {
+  box-shadow: 0 0 12px rgb(0 0 0 / 50%);
+}
+.active {
+  background-color: #161616;
+  color: #fff;
+}
+.disabled {
+  display: none;
+}

@@ -1,0 +1,39 @@
+.card {
+  background-color: #161616;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 0 12px rgb(0 0 0 / 15%);
+}
+.card_img {
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+.card img {
+  width: 250px;
+  height: 150px;
+}
+.card_items {
+  list-style-type: none;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  text-align: left;
+  color: #fff;
+}
+.margins {
+  margin-top: 2.5rem;
+  width: 250px;
+}
+.card:hover {
+  box-shadow: 0 0 12px rgb(0 0 0 / 75%);
+}
+@media only screen and (max-width: 600px) {
+  .margins {
+    margin: auto;
+    padding: 0.5rem;
+    width: 100%;
+  }
+  .card img {
+    width: 359px;
+    height: 215px;
+  }
+}

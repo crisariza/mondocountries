@@ -1,0 +1,64 @@
+/*===== LAYOUT =====*/
+.bd_grid {
+  max-width: 1400px;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-column-gap: 2rem;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.earth {
+  width: 600px;
+  filter: drop-shadow(0 0 12px rgba(0, 0, 0, 0.15));
+  float: right;
+  margin-right: -5.9rem;
+  margin-bottom: -5.9rem;
+  overflow: hidden;
+}
+.button {
+  background-color: #063e7a;
+  box-shadow: 0 0 12px rgb(0 0 0 / 15%);
+  padding: 1.5rem;
+  border: none;
+  display: flex;
+  float: left;
+  margin-top: 1rem;
+  cursor: pointer;
+  color: #fff;
+}
+.title h1 {
+  text-align: left;
+  color: #161616;
+}
+.findout {
+  width: 500px;
+  font-size: 1.5rem;
+  text-align: left;
+  margin-top: 3rem;
+}
+.findout h1 {
+  margin-bottom: 0;
+  color: #161616;
+}
+.overflow {
+  overflow: hidden;
+  height: 100vh;
+}
+@media only screen and (max-width: 600px) {
+  .earth {
+    width: 400px;
+    position: fixed;
+    left: 5rem;
+    bottom: 0;
+  }
+  .findout {
+    width: 100%;
+  }
+  .findout h1 {
+    font-size: 30px;
+  }
+  .bd_grid {
+    margin: 0.3rem;
+  }
+}
