@@ -13,7 +13,7 @@ const Country = ({ country, activities }) => {
             <h2 className={style.title}>{country.name}</h2>
           </li>
           <li>
-            <h3>ID: {country.alpha3code}</h3>
+            <h3>ID: {country.cca3}</h3>
           </li>
           <li>
             <h3>Region: {country.region ? country.region : "-"}</h3>

@@ -31,9 +31,9 @@ class Countries extends React.Component {
   }
   renderProduct = (country) => {
     if (location[5] === "popup" || location[5] === "popdown") {
-      <Country country={country} key={country.alpha3code} />;
+      <Country country={country} key={country.cca3} />;
     }
-    return <Country country={country} key={country.alpha3code} />;
+    return <Country country={country} key={country.cca3} />;
   };
 
   render() {

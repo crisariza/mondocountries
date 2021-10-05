@@ -6,7 +6,7 @@ async function bulkScript() {
   );
   console.log("countries table up");
   await pool.query(
-    "CREATE TABLE IF NOT EXISTS activities(activity_id SERIAL PRIMARY KEY, title VARCHAR(255), difficulty INTEGER, duration INTEGER, season VARCHAR(6), country_alpha3code VARCHAR(255))"
+    "CREATE TABLE IF NOT EXISTS activities(activity_id SERIAL PRIMARY KEY, title VARCHAR(255), difficulty INTEGER, duration INTEGER, season VARCHAR(6), cca3 VARCHAR(255))"
   );
   console.log("activities table up");
 }

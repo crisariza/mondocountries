@@ -11,7 +11,7 @@ describe("Activities", () => {
           difficulty: 4,
           duration: 60,
           season: "Winter",
-          country_alpha3code: "ARG",
+          cca3: "ARG",
         });
         const activity = await Activities.findOne({
           where: {
@@ -19,14 +19,14 @@ describe("Activities", () => {
             difficulty: 4,
             duration: 60,
             season: "Winter",
-            country_alpha3code: "ARG",
+            cca3: "ARG",
           },
         });
         expect(activity.dataValues.title).to.eql("Walking in the hood");
         expect(activity.dataValues.difficulty).to.eql("4");
         expect(activity.dataValues.duration).to.eql("60");
         expect(activity.dataValues.season).to.eql("Winter");
-        expect(activity.dataValues.country_alpha3code).to.eql("ARG");
+        expect(activity.dataValues.cca3).to.eql("ARG");
       } catch (error) {
         console.log(error);
       }
@@ -43,7 +43,7 @@ describe("Activities", () => {
         expect(activity.dataValues.difficulty).to.eql("4");
         expect(activity.dataValues.duration).to.eql("60");
         expect(activity.dataValues.season).to.eql("Winter");
-        expect(activity.dataValues.country_alpha3code).to.eql("ARG");
+        expect(activity.dataValues.cca3).to.eql("ARG");
       } catch (error) {
         console.log(error);
       }

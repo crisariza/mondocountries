@@ -49,7 +49,16 @@ app.get("/countries/:id", async (req, res) => {
         } = restcountries.data[i];
         await pool.query(
           "INSERT INTO countries (cca3, name, flag, capital, region, subregion, area, population) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)",
-          [cca3, name.common, flags.svg, capital[0], region, subregion, area, population]
+          [
+            cca3,
+            name.common,
+            flags.svg,
+            capital[0],
+            region,
+            subregion,
+            area,
+            population,
+          ]
         );
       }
     }
@@ -89,7 +98,7 @@ app.get("/countries/order/:ordertype/:id", async (req, res) => {
       ordertype === "spring"
     ) {
       countries = await pool.query(
-        "SELECT DISTINCT country_id, alpha3code, name, flag, capital, region, population FROM countries INNER JOIN activities ON alpha3code = country_alpha3code  WHERE LOWER(alpha3code) = LOWER(alpha3code) AND LOWER(season) = LOWER($1) offset ((25*$2)-25) rows fetch next 25 rows only",
+        "SELECT DISTINCT country_id, cca3, name, flag, capital, region, population FROM countries INNER JOIN activities ON cca3 = cca3  WHERE LOWER(cca3) = LOWER(cca3) AND LOWER(season) = LOWER($1) offset ((25*$2)-25) rows fetch next 25 rows only",
         [ordertype, id]
       );
     }
@@ -136,11 +145,11 @@ app.get("/country/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const country = await pool.query(
-      "SELECT * FROM countries WHERE LOWER(alpha3code) = LOWER($1)",
+      "SELECT * FROM countries WHERE LOWER(cca3) = LOWER($1)",
       [id]
     );
     const activity = await pool.query(
-      "SELECT * FROM activities WHERE LOWER(country_alpha3code) LIKE LOWER(CONCAT('%', $1::varchar , '%')) ORDER by activity_id",
+      "SELECT * FROM activities WHERE LOWER(cca3) LIKE LOWER(CONCAT('%', $1::varchar , '%')) ORDER by activity_id",
       [id]
     );
     res.json({ country: country.rows[0], activities: activity.rows });
@@ -194,7 +203,7 @@ app.post("/addactivity", async (req, res) => {
   try {
     const { title, difficulty, duration, season, countries } = req.body;
     const activity = await pool.query(
-      "INSERT INTO activities (title, difficulty, duration, season, country_alpha3code) VALUES ($1, $2, $3, $4, $5);",
+      "INSERT INTO activities (title, difficulty, duration, season, cca3) VALUES ($1, $2, $3, $4, $5);",
       [title, difficulty, duration, season, countries]
     );
     console.log(activity);

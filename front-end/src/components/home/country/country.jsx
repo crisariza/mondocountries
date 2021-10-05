@@ -7,9 +7,7 @@ const Country = ({ country }) => {
       <a
         href={
           "/country/" +
-          (country.alpha3code
-            ? country.alpha3code.toLowerCase()
-            : country.alpha3code)
+          (country.cca3 ? country.cca3.toLowerCase() : country.cca3)
         }
       >
         <div className={style.card}>
