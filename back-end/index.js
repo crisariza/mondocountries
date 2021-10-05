@@ -34,22 +34,22 @@ app.get("/countries/:id", async (req, res) => {
     );
     if (countries.rows.length === 0) {
       const restcountries = await axios.get(
-        "https://restcountries.com/v2/all"
+        "https://restcountries.com/v3.1/all"
       );
       for (let i = 0; i < restcountries.data.length; i++) {
         let {
-          alpha3Code,
+          cca3,
           name,
           flags,
           capital,
           region,
-          continent,
+          subregion,
           area,
           population,
         } = restcountries.data[i];
         await pool.query(
           "INSERT INTO countries (alpha3code, name, flag, capital, region, subregion, area, population) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)",
-          [alpha3Code, name, flags[1], capital, continent, region, area, population]
+          [cca3, name.common, flags.svg, capital[0], region, subregion, area, population]
         );
       }
     }
