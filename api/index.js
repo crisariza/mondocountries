@@ -115,7 +115,7 @@ server.get("/country/:id", async (req, res) => {
       [id]
     );
     const activity = await db.query(
-      "SELECT * FROM activities WHERE LOWER(cca3) LIKE LOWER(CONCAT('%', $1::letchar , '%')) ORDER by activity_id",
+      "SELECT * FROM activities WHERE LOWER(cca3) LIKE LOWER(CONCAT('%', TEXT($1), '%')) ORDER by activity_id",
       [id]
     );
     res.json({ country: country.rows[0], activities: activity.rows });
@@ -129,7 +129,7 @@ server.get("/countries/search/:search", async (req, res) => {
   try {
     const { search } = req.params;
     const country = await db.query(
-      "SELECT * FROM countries WHERE LOWER(name) LIKE LOWER(CONCAT('%', $1::letchar , '%')) ORDER by country_id",
+      "SELECT * FROM countries WHERE LOWER(name) LIKE LOWER(CONCAT('%', TEXT($1), '%')) ORDER by country_id",
       [search]
     );
     res.json(country.rows);
