@@ -4,7 +4,7 @@ module.exports = async (req, res) => {
   try {
     const { text } = req.query;
     const country = await db.query(
-      "SELECT * FROM countries WHERE LOWER(name) LIKE LOWER(CONCAT('%', $1::letchar , '%')) ORDER by country_id",
+      "SELECT * FROM countries WHERE LOWER(name) LIKE LOWER(CONCAT('%', $1, '%')) ORDER by country_id",
       [text]
     );
     res.json(country.rows);
