@@ -11,7 +11,11 @@ module.exports = async (req, res) => {
       "SELECT * FROM activities WHERE LOWER(cca3) LIKE LOWER(CONCAT('%', TEXT($1), '%')) ORDER by activity_id",
       [id]
     );
-    res.json({ country: country.rows[0], activities: activity.rows });
+    res.json(
+      country
+        ? { country: country.rows[0], activities: activity.rows }
+        : { message: "Country not found." }
+    );
   } catch (err) {
     res.json({ error: err.message });
   }
