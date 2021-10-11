@@ -2,7 +2,7 @@ let db = require("../../../db");
 
 module.exports = async (req, res) => {
   try {
-    const { type, page } = req.params;
+    const { type, page } = req.query;
 
     if (type === "alpdown") {
       const countries = await db.query(

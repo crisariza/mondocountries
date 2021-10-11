@@ -7,11 +7,11 @@ module.exports = async (req, res) => {
       "SELECT * FROM countries WHERE LOWER(cca3) = LOWER($1)",
       [2]
     );
-    const activity = await db.query(
-      "SELECT * FROM activities WHERE LOWER(cca3) LIKE LOWER(CONCAT('%', $1::letchar , '%')) ORDER by activity_id",
-      [2]
-    );
-    res.json({ country: country.rows[0], activities: activity.rows });
+    //const activity = await db.query(
+    //"SELECT * FROM activities WHERE LOWER(cca3) LIKE LOWER(CONCAT('%', $1::letchar , '%')) ORDER by activity_id",
+    //[2]
+    //);
+    res.json({ country: country.rows[0] });
   } catch (err) {
     res.json({ error: err.message });
   }
