@@ -1,6 +1,6 @@
 var db = require("./db");
 
-module.exports = (req, res) => {
+module.exports = async (req, res) => {
   try {
     const countries = await db.query(
       "SELECT * FROM countries ORDER by country_id"
