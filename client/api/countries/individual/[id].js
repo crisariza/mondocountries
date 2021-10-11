@@ -2,8 +2,8 @@ let db = require("../../db");
 
 module.exports = async (req, res) => {
   try {
-    console.log(req.query);
     const { id } = req.query;
+    console.log(id);
     const country = await db.query(
       "SELECT * FROM countries WHERE LOWER(cca3) = LOWER($1)",
       [id]
