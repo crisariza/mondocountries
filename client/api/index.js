@@ -1,3 +1,3 @@
 module.exports = (req, res) => {
-  res.json("Thank you for using the mondocountries API!");
+  res.json({ message: "Thank you for using the mondocountries API!" });
 };

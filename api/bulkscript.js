@@ -1,19 +1,19 @@
-var pool = require("./db");
-var axios = require("axios");
+let db = require("./db");
+let axios = require("axios");
 
 async function bulkScript() {
   try {
-    await pool.query(
-      "CREATE TABLE IF NOT EXISTS countries(country_id SERIAL PRIMARY KEY, cca3 VARCHAR(3), name VARCHAR(255), flag VARCHAR(255), capital VARCHAR(255), region VARCHAR(255), subregion VARCHAR(255), area DECIMAL, population INTEGER)"
+    await db.query(
+      "CREATE TABLE IF NOT EXISTS countries(country_id SERIAL PRIMARY KEY, cca3 letCHAR(3), name letCHAR(255), flag letCHAR(255), capital letCHAR(255), region letCHAR(255), subregion letCHAR(255), area DECIMAL, population INTEGER)"
     );
     console.log("Countries table up");
 
-    await pool.query(
-      "CREATE TABLE IF NOT EXISTS activities(activity_id SERIAL PRIMARY KEY, title VARCHAR(255), difficulty INTEGER, duration INTEGER, season VARCHAR(6), cca3 VARCHAR(3))"
+    await db.query(
+      "CREATE TABLE IF NOT EXISTS activities(activity_id SERIAL PRIMARY KEY, title letCHAR(255), difficulty INTEGER, duration INTEGER, season letCHAR(6), cca3 letCHAR(3))"
     );
     console.log("Activities table up");
 
-    const countries = await pool.query(
+    const countries = await db.query(
       "SELECT * FROM countries ORDER by country_id"
     );
     if (countries.rows.length === 0) {
@@ -32,7 +32,7 @@ async function bulkScript() {
           area,
           population,
         } = element;
-        await pool.query(
+        await db.query(
           "INSERT INTO countries (cca3, name, flag, capital, region, subregion, area, population) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)",
           [
             cca3,

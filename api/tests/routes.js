@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-expressions */
 
-var supertest = require("supertest-as-promised")(require("../index"));
-var expect = require("chai").expect;
+let supertest = require("supertest-as-promised")(require("../index"));
+let expect = require("chai").expect;
 
 describe("Routes", function () {
   describe("/countries", function () {
@@ -23,8 +23,8 @@ describe("Routes", function () {
         .expect(200)
         .expect("Content-Type", /json/)
         .expect(function (res) {
-          var orderTrue = [];
-          var paginateTrue = [];
+          let orderTrue = [];
+          let paginateTrue = [];
           for (let i = 0; i < res.body.length; i++) {
             orderTrue.push(res.body[i].region === "Europe");
             paginateTrue.push(res.body[i]);

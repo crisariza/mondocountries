@@ -1,15 +1,15 @@
-var express = require("express");
-var app = express();
-var cors = require("cors");
-var db = require("./db");
+let express = require("express");
+let server = express();
+let cors = require("cors");
+let db = require("./db");
 const { bulkScript } = require("./bulkscript.js");
 const { API_PORT } = process.env;
 
-app.use(cors());
-app.use(express.json());
+server.use(cors());
+server.use(express.json());
 
 // GET ALL COUNTRIES
-app.get("/countries", async (req, res) => {
+server.get("/countries", async (req, res) => {
   try {
     const countries = await db.query(
       "SELECT * FROM countries ORDER by country_id"
@@ -21,7 +21,7 @@ app.get("/countries", async (req, res) => {
 });
 
 // COUNTRIES ALPHABET DOWN
-app.get("/countries/:id", async (req, res) => {
+server.get("/countries/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const countries = await db.query(
@@ -35,10 +35,10 @@ app.get("/countries/:id", async (req, res) => {
 });
 
 // COUNTRIES & ACTIVITIES SORT
-app.get("/countries/order/:ordertype/:id", async (req, res) => {
+server.get("/countries/order/:ordertype/:id", async (req, res) => {
   try {
     const { ordertype, id } = req.params;
-    var countries = [];
+    let countries = [];
     if (ordertype === "alpdown") {
       countries = await db.query(
         "SELECT * FROM countries WHERE country_id BETWEEN 250-($1*24)-($1-1) AND 250-(25*($1-1)) ORDER BY country_id DESC",
@@ -75,10 +75,10 @@ app.get("/countries/order/:ordertype/:id", async (req, res) => {
 });
 
 // COUNTRIES PAGINATE QUANTITY
-app.get("/countries/paginate/:ordertype", async (req, res) => {
+server.get("/countries/paginate/:ordertype", async (req, res) => {
   try {
     const { ordertype } = req.params;
-    var countries = [];
+    let countries = [];
     if (
       ordertype === "africa" ||
       ordertype === "americas" ||
@@ -107,7 +107,7 @@ app.get("/countries/paginate/:ordertype", async (req, res) => {
 });
 
 // GET A COUNTRY
-app.get("/country/:id", async (req, res) => {
+server.get("/country/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const country = await db.query(
@@ -115,7 +115,7 @@ app.get("/country/:id", async (req, res) => {
       [id]
     );
     const activity = await db.query(
-      "SELECT * FROM activities WHERE LOWER(cca3) LIKE LOWER(CONCAT('%', $1::varchar , '%')) ORDER by activity_id",
+      "SELECT * FROM activities WHERE LOWER(cca3) LIKE LOWER(CONCAT('%', $1::letchar , '%')) ORDER by activity_id",
       [id]
     );
     res.json({ country: country.rows[0], activities: activity.rows });
@@ -125,11 +125,11 @@ app.get("/country/:id", async (req, res) => {
 });
 
 // SEARCH COUNTRIES
-app.get("/countries/search/:search", async (req, res) => {
+server.get("/countries/search/:search", async (req, res) => {
   try {
     const { search } = req.params;
     const country = await db.query(
-      "SELECT * FROM countries WHERE LOWER(name) LIKE LOWER(CONCAT('%', $1::varchar , '%')) ORDER by country_id",
+      "SELECT * FROM countries WHERE LOWER(name) LIKE LOWER(CONCAT('%', $1::letchar , '%')) ORDER by country_id",
       [search]
     );
     res.json(country.rows);
@@ -139,7 +139,7 @@ app.get("/countries/search/:search", async (req, res) => {
 });
 
 // GET ALL ACTIVITIES
-app.get("/activities", async (req, res) => {
+server.get("/activities", async (req, res) => {
   try {
     const activities = await db.query(
       "SELECT * FROM activities ORDER by activity_id"
@@ -151,7 +151,7 @@ app.get("/activities", async (req, res) => {
 });
 
 // GET AN ACTIVITY
-app.get("/activity/:id", async (req, res) => {
+server.get("/activity/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const activity = await db.query(
@@ -165,7 +165,7 @@ app.get("/activity/:id", async (req, res) => {
 });
 
 // POST AN ACTIVITY
-app.post("/addactivity", async (req, res) => {
+server.post("/addactivity", async (req, res) => {
   try {
     const { title, difficulty, duration, season, countries } = req.body;
     const activity = await db.query(
@@ -178,7 +178,7 @@ app.post("/addactivity", async (req, res) => {
   }
 });
 
-app.listen(API_PORT, () => {
+server.listen(API_PORT, () => {
   console.log(`Server has started on port ${API_PORT}`);
   bulkScript();
 });

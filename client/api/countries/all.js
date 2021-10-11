@@ -1,4 +1,4 @@
-var db = require("./db");
+let db = require("../db");
 
 module.exports = async (req, res) => {
   try {
@@ -7,6 +7,6 @@ module.exports = async (req, res) => {
     );
     res.json(countries.rows);
   } catch (err) {
-    res.json(err.message);
+    res.json({ error: err.message });
   }
 };
