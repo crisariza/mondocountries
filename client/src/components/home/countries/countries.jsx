@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./countries.module.css";
 import Country from "../country/country";
-const { REACT_APP_API_URL } = process.env;
+const { API_URL } = process.env;
 const location = window.location.href.split("/");
 class Countries extends React.Component {
   state = {
@@ -11,13 +11,13 @@ class Countries extends React.Component {
   };
 
   async componentDidMount() {
-    let url = `${REACT_APP_API_URL}/countries/${location[4]}`;
+    let url = `${API_URL}/countries/${location[4]}`;
     if (location[4] === "search") {
-      url = `${REACT_APP_API_URL}/countries/search/${location[5]}`;
+      url = `${API_URL}/countries/search/${location[5]}`;
     } else if (location[5] === "popup" || location[5] === "popdown") {
-      url = `${REACT_APP_API_URL}/countries/`;
+      url = `${API_URL}/countries/`;
     } else if (location[5]) {
-      url = `${REACT_APP_API_URL}/countries/order/${location[5]}/${location[6]}`;
+      url = `${API_URL}/countries/order/${location[5]}/${location[6]}`;
     }
     const response = await fetch(url);
     let data = await response.json();

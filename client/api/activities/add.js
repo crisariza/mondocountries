@@ -7,8 +7,8 @@ module.exports = async (req, res) => {
       "INSERT INTO activities (title, difficulty, duration, season, cca3) VALUES ($1, $2, $3, $4, $5);",
       [title, difficulty, duration, season, countries]
     );
-    console.log(activity);
+    res.json(activity);
   } catch (err) {
-    console.log(err.message);
+    res.json({ error: err.message });
   }
 };

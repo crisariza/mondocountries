@@ -13,6 +13,6 @@ module.exports = async (req, res) => {
     );
     res.json({ country: country.rows[0], activities: activity.rows });
   } catch (err) {
-    console.log(err.message);
+    res.json({ error: err.message });
   }
 };

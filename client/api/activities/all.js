@@ -7,6 +7,6 @@ module.exports = async (req, res) => {
     );
     res.json(activities.rows);
   } catch (err) {
-    console.log(err.message);
+    res.json({ error: err.message });
   }
 };
