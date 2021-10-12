@@ -34,7 +34,6 @@ class Filter extends React.Component {
         filters[property] = true;
       }
     }
-    console.log(this.props.filterField);
     return (
       <div className={style.filters}>
         <select className={style.selects} onChange={this.props.filterChange}>

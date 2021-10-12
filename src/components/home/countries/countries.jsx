@@ -1,6 +1,7 @@
 import React from "react";
 import style from "./countries.module.css";
 import Country from "../country/country";
+
 const { API_URL } = process.env;
 const location = window.location.href.split("/");
 class Countries extends React.Component {
@@ -12,6 +13,7 @@ class Countries extends React.Component {
 
   async componentDidMount() {
     let url = `${API_URL}/countries/${location[4]}`;
+
     if (location[4] === "search") {
       url = `${API_URL}/countries/search/${location[5]}`;
     } else if (location[5] === "popup" || location[5] === "popdown") {
@@ -19,13 +21,19 @@ class Countries extends React.Component {
     } else if (location[5]) {
       url = `${API_URL}/countries/order/${location[5]}/${location[6]}`;
     }
-    const response = await fetch(url);
+    const response = await fetch(
+      "https://mondocountries.vercel.app/api/countries/order/alpup/1"
+    );
+
     let data = await response.json();
+    console.log(data);
+
     if (location[5] === "popup") {
       data.sort((a, b) => (a.population > b.population ? 1 : -1));
     } else if (location[5] === "popdown") {
       data.sort((a, b) => (a.population < b.population ? 1 : -1));
     }
+
     this.setState({ countries: data });
     this.setState({ loading: "" });
   }
