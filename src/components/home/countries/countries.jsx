@@ -16,7 +16,6 @@ class Countries extends React.Component {
 
     if (location[4] === "search") {
       url = `${API_URL}/countries/search/${location[5].replace("?", "")}`;
-      console.log(url);
     } else if (location[5] === "popup" || location[5] === "popdown") {
       url = `${API_URL}/countries/order/${location[5]}/${location[6]}`;
     } else if (location[5]) {
@@ -24,7 +23,7 @@ class Countries extends React.Component {
     }
     const response = await fetch(url);
     let data = await response.json();
-    console.log("asd");
+    console.log(data, url);
     this.setState({ countries: data.countries });
     this.setState({ loading: "" });
   }

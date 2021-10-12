@@ -7,27 +7,15 @@ import Search from "../search/search";
 import Countries from "../countries/countries";
 import Pagination from "../pagination/pagination";
 
-const MainCountries = ({
-  searchChange,
-  searchField,
-  filterField,
-  filterChange,
-}) => {
+const MainCountries = () => {
   return (
     <div>
       <Nav></Nav>
       <div className={style.bd_grid}>
         <div className={style.side}>
-          <Search
-            searchChange={searchChange}
-            searchField={searchField}
-          ></Search>
-          <Filter
-            filterChange={filterChange}
-            filterField={filterField}
-          ></Filter>
+          <Search></Search>
+          <Filter></Filter>
         </div>
-
         <Countries></Countries>
         <Pagination></Pagination>
       </div>

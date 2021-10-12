@@ -2,12 +2,17 @@ import React from "react";
 import style from "./filter.module.css";
 
 class Filter extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { filterChange: "", filterField: "" };
+  }
+
   componentDidUpdate() {
-    if (this.props.filterField) {
-      if (this.props.filterField === "sortby") {
+    if (this.state.filterField) {
+      if (this.state.filterField === "sortby") {
         window.location.href = "/countries/1";
       } else {
-        window.location.href = `/countries/order/${this.props.filterField}/1`;
+        window.location.href = `/countries/order/${this.state.filterField}/1`;
       }
     }
   }
@@ -36,7 +41,7 @@ class Filter extends React.Component {
     }
     return (
       <div className={style.filters}>
-        <select className={style.selects} onChange={this.props.filterChange}>
+        <select className={style.selects} onChange={this.state.filterChange}>
           {" "}
           <option value="sortby" selected={filters.sortby}>
             All Continents
@@ -57,7 +62,7 @@ class Filter extends React.Component {
             Oceania
           </option>{" "}
         </select>{" "}
-        <select className={style.selects} onChange={this.props.filterChange}>
+        <select className={style.selects} onChange={this.state.filterChange}>
           {" "}
           <option value="sortby" selected={filters.sortby}>
             Alphabet Up
@@ -74,7 +79,7 @@ class Filter extends React.Component {
         </select>{" "}
         <select
           className={style.selects + " " + style.last}
-          onChange={this.props.filterChange}
+          onChange={this.state.filterChange}
         >
           {" "}
           <option value="sortby" selected={filters.sortby}>
