@@ -12,9 +12,9 @@ module.exports = async (req, res) => {
       countries
         ? {
             countries: countries.rows,
-            paginate_quantinty: parseFloat(countries.rows.length / 25),
+            paginate_quantinty: Math.ceil(countries.rows.length / 25),
           }
-        : { message: "Country not found." }
+        : { message: "Countries not found." }
     );
   } catch (err) {
     res.json({ error: err.message });
