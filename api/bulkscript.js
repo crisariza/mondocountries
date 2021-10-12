@@ -9,14 +9,8 @@ module.exports = async (req, res) => {
       "CREATE TABLE IF NOT EXISTS activities(activity_id SERIAL PRIMARY KEY, title VARCHAR(255), difficulty INTEGER, duration INTEGER, season VARCHAR(6), cca3 VARCHAR(255))"
     );
 
-    const countries = await db.query(
-      "SELECT * FROM countries WHERE country_id BETWEEN (25*$1)-24 AND 25*$1 ORDER BY country_id",
-      [id]
-    );
-    const activities = await db.query(
-      "SELECT * FROM countries WHERE country_id BETWEEN (25*$1)-24 AND 25*$1 ORDER BY country_id",
-      [id]
-    );
+    const countries = await db.query("SELECT * FROM countries");
+    const activities = await db.query("SELECT * FROM activities");
 
     if (countries.rows.length === 0) {
       const restcountries = await axios.get(
