@@ -12,7 +12,7 @@ module.exports = async (req, res) => {
         [page]
       );
       countriesLength = await db.query(
-        "SELECT CEILING (COUNT(country_id)/CAST(25 AS float)) as paginate_quantity FROM countries"
+        "SELECT CEILING (COUNT(country_id)/CAST(25 AS float)) FROM countries"
       );
     } else if (type === "alpup") {
       countries = await db.query(
@@ -20,7 +20,7 @@ module.exports = async (req, res) => {
         [id]
       );
       countriesLength = await db.query(
-        "SELECT CEILING (COUNT(country_id)/CAST(25 AS float)) as paginate_quantity FROM countries"
+        "SELECT CEILING (COUNT(country_id)/CAST(25 AS float)) FROM countries"
       );
     } else if (
       type === "africa" ||
@@ -34,7 +34,7 @@ module.exports = async (req, res) => {
         [type, page]
       );
       countriesLength = await db.query(
-        "SELECT CEILING (COUNT(country_id)/CAST(25 AS float)) as paginate_quantity FROM countries WHERE LOWER(region) = LOWER($1)",
+        "SELECT CEILING (COUNT(country_id)/CAST(25 AS float)) FROM countries WHERE LOWER(region) = LOWER($1)",
         [type]
       );
     } else if (
@@ -47,11 +47,18 @@ module.exports = async (req, res) => {
         "SELECT * FROM countries INNER JOIN activities ON cca3 = cca3  WHERE LOWER(cca3) = LOWER(cca3) AND LOWER(season) = LOWER($1) offset ((25*$2)-25) rows fetch next 25 rows only",
         [type, page]
       );
+      countriesLength = await db.query(
+        "SELECT CEILING (COUNT(activity_id)/CAST(25 AS float)) FROM activities WHERE LOWER(season) = LOWER($1)",
+        [type]
+      );
     }
 
     res.json(
       countries
-        ? [countries.rows, countriesLength.rows[0]]
+        ? {
+            countries: countries.rows,
+            paginate_quantity: countriesLength.rows[0],
+          }
         : { message: "Countries not found." }
     );
   } catch (err) {

@@ -26,7 +26,7 @@ class AddActivity extends React.Component {
     this.handleCountriesChange = this.handleCountriesChange.bind(this);
   }
   async componentDidMount() {
-    const response = await fetch(`${API_URL}/countries`);
+    const response = await fetch(`${API_URL}/countries/all`);
     const data = await response.json();
     this.setState({ countriesNames: data });
   }
