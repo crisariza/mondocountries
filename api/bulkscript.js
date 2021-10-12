@@ -9,11 +9,11 @@ module.exports = async (req, res) => {
       "CREATE TABLE IF NOT EXISTS activities(activity_id SERIAL PRIMARY KEY, title VARCHAR(255), difficulty INTEGER, duration INTEGER, season VARCHAR(6), cca3 VARCHAR(255))"
     );
 
-    const countries = await pool.query(
+    const countries = await db.query(
       "SELECT * FROM countries WHERE country_id BETWEEN (25*$1)-24 AND 25*$1 ORDER BY country_id",
       [id]
     );
-    const activities = await pool.query(
+    const activities = await db.query(
       "SELECT * FROM countries WHERE country_id BETWEEN (25*$1)-24 AND 25*$1 ORDER BY country_id",
       [id]
     );
@@ -33,7 +33,7 @@ module.exports = async (req, res) => {
           area,
           population,
         } = restcountries.data[i];
-        await pool.query(
+        await db.query(
           "INSERT INTO countries (cca3, name, flag, capital, region, subregion, area, population) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)",
           [
             cca3,
@@ -47,7 +47,7 @@ module.exports = async (req, res) => {
           ]
         );
       }
-      countries = await pool.query(
+      countries = await db.query(
         "SELECT * FROM countries WHERE country_id BETWEEN (25*$1)-24 AND 25*$1 ORDER BY country_id",
         [id]
       );
