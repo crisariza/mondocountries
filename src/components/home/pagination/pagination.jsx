@@ -5,7 +5,10 @@ import {
   faChevronLeft,
 } from "@fortawesome/free-solid-svg-icons";
 import style from "./pagination.module.css";
-const { API_URL } = process.env;
+
+//const { API_URL } = process.env;
+const API_URL = "https://mondocountries.vercel.app/api";
+
 class Pagination extends React.Component {
   state = {
     locationOrder: "",
@@ -14,17 +17,18 @@ class Pagination extends React.Component {
   };
   async componentDidMount() {
     const location = window.location.href.split("/");
-    let url;
+    let url = "";
     if (Number.isInteger(parseInt(location[6]))) {
-      url = `${API_URL}/countries/paginate/${location[5]}`;
+      url = `${API_URL}/countries/order/${location[5]}/${location[6]}`;
       this.setState({ locationOrder: location[5] });
       this.setState({ pageNumber: parseInt(location[6]) });
     }
     if (Number.isInteger(parseInt(location[4]))) {
-      url = `${API_URL}/countries/paginate/${location[3]}`;
+      url = `${API_URL}/countries/order/${location[3]}/${location[4]}`;
       this.setState({ locationOrder: location[3] });
       this.setState({ pageNumber: parseInt(location[4]) });
     }
+
     const response = await fetch(url);
     const data = await response.json();
     this.setState({ locationLength: data.paginate_quantity });
