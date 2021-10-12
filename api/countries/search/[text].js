@@ -11,8 +11,8 @@ module.exports = async (req, res) => {
     res.json(
       countries
         ? {
-            countries: countries.rows[0],
-            paginate_quantinty: parseFloat(countries.rows[0].length / 25),
+            countries: countries.rows,
+            paginate_quantinty: parseFloat(countries.rows.length / 25),
           }
         : { message: "Country not found." }
     );
