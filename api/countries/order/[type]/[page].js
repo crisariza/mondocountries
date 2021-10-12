@@ -5,8 +5,15 @@ module.exports = async (req, res) => {
     const { type, page } = req.query;
     let countries = [];
     let countriesLength = 0;
-
-    if (type === "alpdown") {
+    if (type === "alpup") {
+      countries = await db.query(
+        "SELECT * FROM countries WHERE country_id BETWEEN (25*$1)-24 AND 25*$1 ORDER BY country_id",
+        [page]
+      );
+      countriesLength = await db.query(
+        "SELECT CEILING (COUNT(country_id)/CAST(25 AS float)) FROM countries"
+      );
+    } else if (type === "alpdown") {
       countries = await db.query(
         "SELECT * FROM countries WHERE country_id BETWEEN 250-($1*24)-($1-1) AND 250-(25*($1-1)) ORDER BY country_id DESC",
         [page]
@@ -14,10 +21,18 @@ module.exports = async (req, res) => {
       countriesLength = await db.query(
         "SELECT CEILING (COUNT(country_id)/CAST(25 AS float)) FROM countries"
       );
-    } else if (type === "alpup") {
+    } else if (type === "popup") {
       countries = await db.query(
-        "SELECT * FROM countries WHERE country_id BETWEEN (25*$1)-24 AND 25*$1 ORDER BY country_id",
-        [id]
+        "SELECT * FROM countries WHERE country_id BETWEEN (25*$1)-24 AND 25*$1 ORDER BY population",
+        [page]
+      );
+      countriesLength = await db.query(
+        "SELECT CEILING (COUNT(country_id)/CAST(25 AS float)) FROM countries"
+      );
+    } else if (type === "popdown") {
+      countries = await db.query(
+        "SELECT * FROM countries WHERE country_id BETWEEN 250-($1*24)-($1-1) AND 250-(25*($1-1)) ORDER BY population DESC",
+        [page]
       );
       countriesLength = await db.query(
         "SELECT CEILING (COUNT(country_id)/CAST(25 AS float)) FROM countries"
@@ -57,7 +72,7 @@ module.exports = async (req, res) => {
       countries
         ? {
             countries: countries.rows,
-            paginate_quantity: countriesLength.rows[0],
+            paginate_quantity: countriesLength.rows[0].ceiling,
           }
         : { message: "Countries not found." }
     );
