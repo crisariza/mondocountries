@@ -17,6 +17,7 @@ module.exports = async (req, res) => {
       const restcountries = await axios.get(
         "https://restcountries.com/v3.1/all"
       );
+      console.log(restcountries.data);
       for (let i = 0; i < restcountries.data.length; i++) {
         let {
           cca3,
