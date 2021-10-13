@@ -10,8 +10,8 @@ module.exports = async (req, res) => {
       "CREATE TABLE IF NOT EXISTS activities(activity_id SERIAL PRIMARY KEY, title VARCHAR(255), difficulty INTEGER, duration INTEGER, season VARCHAR(6), cca3 VARCHAR(255))"
     );
 
-    const countries = await db.query("SELECT * FROM countries");
-    const activities = await db.query("SELECT * FROM activities");
+    let countries = await db.query("SELECT * FROM countries");
+    let activities = await db.query("SELECT * FROM activities");
 
     if (countries.rows.length === 0) {
       const restcountries = await axios.get(
@@ -48,7 +48,7 @@ module.exports = async (req, res) => {
     }
 
     res.json({
-      countries: countries ? countries.rows : 0,
+      countries: countries ? restcountries.data : 0,
       activities: activities ? activities.rows : 0,
     });
   } catch (err) {
