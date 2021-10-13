@@ -23,7 +23,6 @@ class Countries extends React.Component {
     }
     const response = await fetch(url);
     let data = await response.json();
-    console.log(data, url);
     this.setState({ countries: data.countries });
     this.setState({ loading: "" });
   }

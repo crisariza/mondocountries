@@ -73,12 +73,10 @@ class AddActivity extends React.Component {
   }
 
   handleCountriesChange(e, index) {
-    console.log(e.target.value);
     this.state.countries[index] = e.target.value;
     this.setState({ countries: this.state.countries });
   }
   render() {
-    console.log(this.state.countries.length);
     return (
       <div>
         <Nav></Nav>
