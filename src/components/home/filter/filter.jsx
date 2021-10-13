@@ -4,7 +4,7 @@ import style from "./filter.module.css";
 class Filter extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { filterChange: "", filterField: "" };
+    this.state = { filterField: "" };
   }
 
   componentDidUpdate() {
@@ -17,8 +17,8 @@ class Filter extends React.Component {
     }
   }
   render() {
-    const location = window.location.href.split("/")[5];
-    const filters = {
+    let location = window.location.href.split("/")[5];
+    let filters = {
       sortby: false,
       africa: false,
       americas: false,
@@ -34,14 +34,17 @@ class Filter extends React.Component {
       spring: false,
     };
 
-    for (const property in filters) {
+    for (let property in filters) {
       if (location === property) {
         filters[property] = true;
       }
     }
     return (
       <div className={style.filters}>
-        <select className={style.selects} onChange={this.state.filterChange}>
+        <select
+          className={style.selects}
+          onChange={(e) => this.setState({ filterField: e.target.value })}
+        >
           {" "}
           <option value="sortby" selected={filters.sortby}>
             All Continents
@@ -62,7 +65,10 @@ class Filter extends React.Component {
             Oceania
           </option>{" "}
         </select>{" "}
-        <select className={style.selects} onChange={this.state.filterChange}>
+        <select
+          className={style.selects}
+          onChange={(e) => this.setState({ filterField: e.target.value })}
+        >
           {" "}
           <option value="sortby" selected={filters.sortby}>
             Alphabet Up
@@ -79,7 +85,7 @@ class Filter extends React.Component {
         </select>{" "}
         <select
           className={style.selects + " " + style.last}
-          onChange={this.state.filterChange}
+          onChange={(e) => this.setState({ filterField: e.target.value })}
         >
           {" "}
           <option value="sortby" selected={filters.sortby}>

@@ -24,13 +24,14 @@ class Pagination extends React.Component {
       this.setState({ pageNumber: parseInt(location[6]) });
     }
     if (Number.isInteger(parseInt(location[4]))) {
-      url = `${API_URL}/countries/order/${location[3]}/${location[4]}`;
+      url = `${API_URL}/countries/order/alpup/${location[4]}`;
       this.setState({ locationOrder: location[3] });
       this.setState({ pageNumber: parseInt(location[4]) });
     }
 
     const response = await fetch(url);
     const data = await response.json();
+    console.log(data);
     this.setState({ locationLength: data.paginate_quantity });
   }
   render() {

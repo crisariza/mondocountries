@@ -33,7 +33,9 @@ module.exports = async (req, res) => {
           [
             cca3,
             name ? name.common : "Unknown",
-            flags ? flags.svg : "",
+            flags
+              ? flags.svg
+              : "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png",
             capital ? capital[0] : "Unknown",
             region,
             subregion,
