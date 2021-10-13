@@ -5,9 +5,9 @@ import {
   faCanadianMapleLeaf,
   faEnvira,
 } from "@fortawesome/free-brands-svg-icons";
-import style from "./addactivity.module.css";
-import Nav from "../../nav/nav";
-import Footer from "../../footer/footer";
+import style from "./add.module.css";
+import Nav from "../nav/nav";
+import Footer from "../footer/footer";
 const { API_URL } = process.env;
 class AddActivity extends React.Component {
   constructor(props) {
@@ -53,7 +53,7 @@ class AddActivity extends React.Component {
       alert("The form fields are incomplete!");
       e.preventDefault();
     } else {
-      fetch(`${API_URL}/addactivity`, {
+      fetch(`${API_URL}/activities/add`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

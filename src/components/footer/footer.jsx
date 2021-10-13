@@ -14,7 +14,7 @@ const Footer = () => {
       <footer className={style.bd_grid + " " + style.test}>
         <div>
           <a
-            href="/countries/1"
+            href="/countries/order/alpup/1"
             className={style.icons}
             aria-label="Mondo Countries"
           >

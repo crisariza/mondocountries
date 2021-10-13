@@ -3,7 +3,7 @@ import { Route, BrowserRouter } from "react-router-dom";
 import "./App.css";
 import MainCountries from "./components/home/maincountries/maincountries";
 import MainCountry from "./components/individual/maincountry/maincountry";
-import AddActivity from "./components/activities/addactivity/addactivity";
+import AddActivity from "./components/activities/add";
 
 class App extends Component {
   render() {
@@ -14,11 +14,22 @@ class App extends Component {
           <Route
             path="/"
             exact
-            render={() => (window.location.href = "/countries/1")}
+            render={() => (window.location.href = "/countries/order/alpup/1")}
           />
           <Route path="/country/:id" render={() => <MainCountry />} />
-          <Route path="/countries/:id" render={() => <MainCountries />} />
-          <Route exact path="/addactivity" render={() => <AddActivity />} />
+          <Route
+            path="/countries/order/alpup/:id"
+            render={() => <MainCountries />}
+          />
+          <Route
+            path="/countries/order/:continent/:id"
+            render={() => <MainCountries />}
+          />
+          <Route
+            path="/countries/search/:id"
+            render={() => <MainCountries />}
+          />
+          <Route exact path="/activities/add" render={() => <AddActivity />} />
         </BrowserRouter>{" "}
       </div>
     );

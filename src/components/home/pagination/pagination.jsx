@@ -8,30 +8,24 @@ import style from "./pagination.module.css";
 
 //const { API_URL } = process.env;
 const API_URL = "https://mondocountries.vercel.app/api";
+const location = window.location.href.split("/");
 
 class Pagination extends React.Component {
   state = {
-    locationOrder: "",
+    locationQuery: "",
     locationLength: 1,
     pageNumber: 1,
   };
   async componentDidMount() {
-    const location = window.location.href.split("/");
-    let url = "";
-    if (Number.isInteger(parseInt(location[6]))) {
-      url = `${API_URL}/countries/order/${location[5]}/${location[6]}`;
-      this.setState({ locationOrder: location[5] });
-      this.setState({ pageNumber: parseInt(location[6]) });
-    }
-    if (Number.isInteger(parseInt(location[4]))) {
-      url = `${API_URL}/countries/order/alpup/${location[4]}`;
-      this.setState({ locationOrder: location[3] });
-      this.setState({ pageNumber: parseInt(location[4]) });
-    }
+    const url = `${API_URL}/countries/${location[4]}/${location[5]}/${location[6]}`;
 
     const response = await fetch(url);
     const data = await response.json();
-    this.setState({ locationLength: data.paginate_quantity });
+    this.setState({
+      locationLength: data.paginate_quantity,
+      locationQuery: `${location[4]}/${location[5]}`,
+    });
+    console.log(this.state.locationQuery);
   }
   render() {
     let pagination = [];
@@ -39,11 +33,7 @@ class Pagination extends React.Component {
       pagination.push(
         <a
           key={i}
-          href={
-            this.state.locationOrder != "countries"
-              ? `/countries/order/${this.state.locationOrder}/${i}`
-              : `/countries/${i}`
-          }
+          href={`/countries/order/${this.state.locationQuery}/${i}`}
           className={
             this.state.pageNumber === i
               ? style.active + " " + style.each
@@ -57,13 +47,9 @@ class Pagination extends React.Component {
     return (
       <div className={style.center}>
         <a
-          href={
-            this.state.locationOrder != "countries"
-              ? `/countries/order/${this.state.locationOrder}/${
-                  this.state.pageNumber - 1
-                }`
-              : `/countries/${this.state.pageNumber - 1}`
-          }
+          href={`/countries/order/${this.state.locationQuery}/${
+            this.state.pageNumber - 1
+          }`}
           className={this.state.pageNumber === 1 ? style.disabled : style.each}
           aria-label="Paginate left"
         >
@@ -72,13 +58,9 @@ class Pagination extends React.Component {
         {pagination}
         {pagination.length > 0 ? (
           <a
-            href={
-              this.state.locationOrder != "countries"
-                ? `/countries/order/${this.state.locationOrder}/${
-                    this.state.pageNumber + 1
-                  }`
-                : `/countries/${this.state.pageNumber + 1}`
-            }
+            href={`/countries/order/${this.state.locationQuery}/${
+              this.state.pageNumber + 1
+            }`}
             className={
               this.state.pageNumber === this.state.locationLength
                 ? style.disabled

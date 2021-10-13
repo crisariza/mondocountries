@@ -6,10 +6,10 @@ const Nav = () => {
     <div className={style.bd_grid}>
       <div className={style.navbar}>
         <h2>
-          <a href="/countries/1">Mondo</a>
+          <a href="/countries/order/alpup/1">Mondo</a>
         </h2>
         <h2>
-          <a href="/addactivity">Add Activity</a>
+          <a href="/activities/add">Add Activity</a>
         </h2>
       </div>
     </div>

@@ -10,7 +10,7 @@ class Filter extends React.Component {
   componentDidUpdate() {
     if (this.state.filterField) {
       if (this.state.filterField === "sortby") {
-        window.location.href = "/countries/1";
+        window.location.href = "/countries/order/alpup/1";
       } else {
         window.location.href = `/countries/order/${this.state.filterField}/1`;
       }

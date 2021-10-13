@@ -6,7 +6,7 @@ const Landing = () => {
     <div className={style.overflow}>
       <div className={style.bd_grid}>
         <div className={style.title}>
-          <a href="/countries/1">
+          <a href="/countries/order/alpup/1">
             <h1>Mondo</h1>
           </a>
         </div>
@@ -16,7 +16,7 @@ const Landing = () => {
           </h1>
         </div>
         <div>
-          <a href="/countries/1">
+          <a href="/countries/order/alpup/1">
             <button className={style.button}>Discover everything</button>
           </a>
         </div>
