@@ -28,6 +28,7 @@ module.exports = async (req, res) => {
           area,
           population,
         } = restcountries.data[i];
+        console.log(restcountries.data[i]);
         await db.query(
           "INSERT INTO countries (cca3, name, flag, capital, region, subregion, area, population) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)",
           [
