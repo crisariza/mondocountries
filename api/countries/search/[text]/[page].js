@@ -1,11 +1,11 @@
-let db = require("../../db");
+let db = require("../../../db");
 
 module.exports = async (req, res) => {
   try {
-    const { text } = req.query;
+    const { text, page } = req.query;
     const countries = await db.query(
-      "SELECT * FROM countries WHERE LOWER(name) LIKE LOWER(CONCAT('%', TEXT($1), '%')) ORDER by name",
-      [text]
+      "SELECT * FROM countries WHERE LOWER(name) LIKE LOWER(CONCAT('%', TEXT($1), '%')) ORDER by name offset ((25*$2)-25) rows fetch next 25 rows only",
+      [text, page]
     );
     const countriesLength = await db.query(
       "SELECT CEILING (COUNT(country_id)/CAST(25 AS float)) FROM countries WHERE LOWER(name) LIKE LOWER(CONCAT('%', TEXT($1), '%'))",

@@ -18,10 +18,6 @@ class App extends Component {
           />
           <Route path="/country/:id" render={() => <MainCountry />} />
           <Route
-            path="/countries/order/alpup/:id"
-            render={() => <MainCountries />}
-          />
-          <Route
             path="/countries/order/:continent/:id"
             render={() => <MainCountries />}
           />
