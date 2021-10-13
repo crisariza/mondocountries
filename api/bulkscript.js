@@ -34,9 +34,9 @@ module.exports = async (req, res) => {
           "INSERT INTO countries (cca3, name, flag, capital, region, subregion, area, population) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)",
           [
             cca3,
-            name.common,
-            flags.svg,
-            capital[0],
+            name ? name.common : "Unknown",
+            flags ? flags.svg : "",
+            capital ? capital[0] : "Unknown",
             region,
             subregion,
             area,
