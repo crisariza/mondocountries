@@ -9,8 +9,7 @@ import style from "./add.module.css";
 import Nav from "../nav/nav";
 import Footer from "../footer/footer";
 
-//const { API_URL } = process.env;
-const API_URL = "https://mondocountries.vercel.app/api";
+const { API_URL } = process.env;
 
 class AddActivity extends React.Component {
   constructor(props) {
