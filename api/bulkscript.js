@@ -17,7 +17,7 @@ module.exports = async (req, res) => {
       const restcountries = await axios.get(
         "https://restcountries.com/v3.1/all"
       );
-      console.log(restcountries.data);
+      console.log(restcountries);
       for (let i = 0; i < restcountries.data.length; i++) {
         let {
           cca3,
@@ -44,13 +44,13 @@ module.exports = async (req, res) => {
           ]
         );
       }
-      countries = await db.query(
-        "SELECT * FROM countries WHERE country_id BETWEEN (25*$1)-24 AND 25*$1 ORDER BY country_id",
-        [id]
-      );
+      countries = await db.query("SELECT * FROM countries");
     }
 
-    res.json({ countries: countries.rows, activities: activities.rows });
+    res.json({
+      countries: countries ? countries.rows : 0,
+      activities: activities ? activities.rows : 0,
+    });
   } catch (err) {
     res.json({ error: err.message });
   }
