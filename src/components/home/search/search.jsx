@@ -13,7 +13,7 @@ class Search extends React.Component {
     return (
       <div className={style.mainDiv}>
         <div className={style.search}>
-          <form action={`/countries/search/${this.state.searchField}`}>
+          <form action={`/countries/search/${this.state.searchField}/1`}>
             <input
               type="text"
               onChange={(e) =>
@@ -28,11 +28,7 @@ class Search extends React.Component {
         </div>{" "}
         <div>
           <a
-            href={`/countries${
-              this.state.searchField
-                ? "/search/" + this.state.searchField
-                : "/1"
-            }`}
+            href={`/countries/search/${this.state.searchField}/1`}
             aria-label="Search button"
           >
             <div className={style.button}>

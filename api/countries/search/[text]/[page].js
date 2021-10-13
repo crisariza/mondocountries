@@ -16,7 +16,7 @@ module.exports = async (req, res) => {
       countries
         ? {
             countries: countries.rows,
-            paginate_quantinty: countriesLength.rows[0].ceiling,
+            paginate_quantity: countriesLength.rows[0].ceiling,
           }
         : { message: "Countries not found." }
     );

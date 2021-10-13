@@ -12,7 +12,6 @@ const location = window.location.href.split("/");
 
 class Pagination extends React.Component {
   state = {
-    locationQuery: "",
     locationLength: 1,
     pageNumber: 1,
   };
@@ -21,11 +20,11 @@ class Pagination extends React.Component {
 
     const response = await fetch(url);
     const data = await response.json();
+    console.log(data.paginate_quantity);
     this.setState({
       locationLength: data.paginate_quantity,
-      locationQuery: `${location[4]}/${location[5]}`,
     });
-    console.log(this.state.locationQuery);
+    console.log(this.state.locationLength);
   }
   render() {
     let pagination = [];
@@ -33,7 +32,7 @@ class Pagination extends React.Component {
       pagination.push(
         <a
           key={i}
-          href={`/countries/order/${this.state.locationQuery}/${i}`}
+          href={`/countries/${location[4]}/${location[5]}/${i}`}
           className={
             this.state.pageNumber === i
               ? style.active + " " + style.each
@@ -47,7 +46,7 @@ class Pagination extends React.Component {
     return (
       <div className={style.center}>
         <a
-          href={`/countries/order/${this.state.locationQuery}/${
+          href={`/countries/${location[4]}/${location[5]}/${
             this.state.pageNumber - 1
           }`}
           className={this.state.pageNumber === 1 ? style.disabled : style.each}
@@ -58,11 +57,11 @@ class Pagination extends React.Component {
         {pagination}
         {pagination.length > 0 ? (
           <a
-            href={`/countries/order/${this.state.locationQuery}/${
+            href={`/countries/${location[4]}/${location[5]}/${
               this.state.pageNumber + 1
             }`}
             className={
-              this.state.pageNumber === this.state.locationLength
+              this.state.pageNumber === location[6]
                 ? style.disabled
                 : style.each
             }

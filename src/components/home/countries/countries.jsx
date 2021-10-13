@@ -16,7 +16,6 @@ class Countries extends React.Component {
 
     const response = await fetch(url);
     let data = await response.json();
-    console.log(data);
     this.setState({ countries: data.countries });
     this.setState({ loading: "" });
   }
@@ -33,7 +32,7 @@ class Countries extends React.Component {
       >
         {this.state.loading ? (
           <h1>{this.state.loading}</h1>
-        ) : this.state.countries.length > 0 ? (
+        ) : this.state.countries ? (
           this.state.countries.map((country) => {
             return this.renderProduct(country);
           })
