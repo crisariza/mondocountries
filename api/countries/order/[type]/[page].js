@@ -7,7 +7,7 @@ module.exports = async (req, res) => {
     let countriesLength = 0;
     if (type === "alpup") {
       countries = await db.query(
-        "SELECT * FROM countries WHERE country_id BETWEEN (25*$1)-24 AND 25*$1 ORDER BY name",
+        "SELECT * FROM countries WHERE country_id ORDER BY name offset ((25*$2)-25) rows fetch next 25 rows only",
         [page]
       );
       countriesLength = await db.query(
@@ -15,7 +15,7 @@ module.exports = async (req, res) => {
       );
     } else if (type === "alpdown") {
       countries = await db.query(
-        "SELECT * FROM countries WHERE country_id BETWEEN 250-($1*24)-($1-1) AND 250-(25*($1-1)) ORDER BY name DESC",
+        "SELECT * FROM countries WHERE country_id ORDER BY name DESC offset ((25*$2)-25) rows fetch next 25 rows only",
         [page]
       );
       countriesLength = await db.query(
@@ -23,7 +23,7 @@ module.exports = async (req, res) => {
       );
     } else if (type === "popup") {
       countries = await db.query(
-        "SELECT * FROM countries WHERE country_id BETWEEN (25*$1)-24 AND 25*$1 ORDER BY population",
+        "SELECT * FROM countries WHERE country_id ORDER BY population offset ((25*$2)-25) rows fetch next 25 rows only",
         [page]
       );
       countriesLength = await db.query(
@@ -31,7 +31,7 @@ module.exports = async (req, res) => {
       );
     } else if (type === "popdown") {
       countries = await db.query(
-        "SELECT * FROM countries WHERE country_id BETWEEN 250-($1*24)-($1-1) AND 250-(25*($1-1)) ORDER BY population DESC",
+        "SELECT * FROM countries WHERE country_id ORDER BY population DESC offset ((25*$2)-25) rows fetch next 25 rows only",
         [page]
       );
       countriesLength = await db.query(
