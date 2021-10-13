@@ -2,17 +2,20 @@ import React from "react";
 import style from "./countries.module.css";
 import Country from "../country/country";
 
-const API_URL = "https://mondocountries.vercel.app/api";
+const { API_URL } = process.env;
 const location = window.location.href.split("/");
 class Countries extends React.Component {
   state = {
     loading: "loading",
     countries: "",
     countriesAmount: 25,
+    queryType: location[4],
+    queryInput: location[5],
+    pageNumber: parseInt(location[6]),
   };
 
   async componentDidMount() {
-    const url = `${API_URL}/countries/${location[4]}/${location[5]}/${location[6]}`;
+    const url = `${API_URL}/countries/${this.state.queryType}/${this.state.queryInput}/${this.state.pageNumber}`;
 
     const response = await fetch(url);
     let data = await response.json();
