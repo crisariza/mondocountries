@@ -1,6 +1,6 @@
 ### Mondo Countries
 
-Deployed using Vercel
+Deployed using Vercel and ElephantSQL
 
 - 📚 Check it out at https://mondocountries.vercel.app
 - 💡 Made with React, ServerLess and PostgreSQL
