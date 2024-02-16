@@ -18,7 +18,6 @@ class Countries extends React.Component {
     const url = `${REACT_APP_API_URL}/countries/${this.state.queryType}/${this.state.queryInput}/${this.state.pageNumber}`;
 
     const response = await fetch(url);
-    console.log(REACT_APP_API_URL);
     let data = await response.json();
     this.setState({ countries: data.countries });
     this.setState({ loading: "" });
