@@ -5,7 +5,7 @@ import Footer from "../../footer/footer";
 import Country from "../country/country";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-const { API_URL } = process.env;
+const { REACT_APP_API_URL } = process.env;
 class Countries extends React.Component {
   state = {
     loading: "Loading...",
@@ -14,7 +14,7 @@ class Countries extends React.Component {
   };
   async componentDidMount() {
     const location = window.location.href.split("/")[4];
-    const url = `${API_URL}/country/${location}`;
+    const url = `${REACT_APP_API_URL}/country/${location}`;
     const response = await fetch(url);
     const data = await response.json();
     this.setState({ country: data.country });

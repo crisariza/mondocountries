@@ -6,7 +6,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import style from "./pagination.module.css";
 
-const { API_URL } = process.env;
+const { REACT_APP_API_URL } = process.env;
 const location = window.location.href.split("/");
 
 class Pagination extends React.Component {
@@ -17,7 +17,7 @@ class Pagination extends React.Component {
     pageNumber: parseInt(location[6]),
   };
   async componentDidMount() {
-    const url = `${API_URL}/countries/${this.state.queryType}/${this.state.queryInput}/${this.state.pageNumber}`;
+    const url = `${REACT_APP_API_URL}/countries/${this.state.queryType}/${this.state.queryInput}/${this.state.pageNumber}`;
 
     const response = await fetch(url);
     const data = await response.json();

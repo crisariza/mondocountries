@@ -9,7 +9,7 @@ import style from "./add.module.css";
 import Nav from "../nav/nav";
 import Footer from "../footer/footer";
 
-const { API_URL } = process.env;
+const { REACT_APP_API_URL } = process.env;
 
 class AddActivity extends React.Component {
   constructor(props) {
@@ -28,7 +28,7 @@ class AddActivity extends React.Component {
     this.handleCountriesChange = this.handleCountriesChange.bind(this);
   }
   async componentDidMount() {
-    const response = await fetch(`${API_URL}/countries/all`);
+    const response = await fetch(`${REACT_APP_API_URL}/countries/all`);
     const data = await response.json();
     this.setState({ countriesNames: data });
   }
@@ -55,7 +55,7 @@ class AddActivity extends React.Component {
       alert("The form fields are incomplete!");
       e.preventDefault();
     } else {
-      fetch(`${API_URL}/activities/add`, {
+      fetch(`${REACT_APP_API_URL}/activities/add`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
