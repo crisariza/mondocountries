@@ -2,7 +2,7 @@ import React from "react";
 import style from "./countries.module.css";
 import Country from "../country/country";
 
-const { API_URL } = process.env;
+const { REACT_APP_API_URL } = process.env;
 const location = window.location.href.split("/");
 class Countries extends React.Component {
   state = {
@@ -15,9 +15,10 @@ class Countries extends React.Component {
   };
 
   async componentDidMount() {
-    const url = `${API_URL}/countries/${this.state.queryType}/${this.state.queryInput}/${this.state.pageNumber}`;
+    const url = `${REACT_APP_API_URL}/countries/${this.state.queryType}/${this.state.queryInput}/${this.state.pageNumber}`;
 
     const response = await fetch(url);
+    console.log(REACT_APP_API_URL);
     let data = await response.json();
     this.setState({ countries: data.countries });
     this.setState({ loading: "" });
