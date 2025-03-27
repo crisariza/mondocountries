@@ -1,5 +1,7 @@
 ### Mondo Countries
 
+Project for Henry Bootcamp. Jan 2021
+
 Deployed using Vercel and ElephantSQL
 
 - 📚 Check it out at https://mondocountries.vercel.app
