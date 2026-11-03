@@ -30,6 +30,7 @@
     "web-vitals": "^1.1.0"
   },
   "scripts": {
+    "preinstall": "node -e \"if(!/^pnpm\\//.test(process.env.npm_config_user_agent||'')){console.error('Este repo usa pnpm: corré pnpm install');process.exit(1)}\"",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -52,5 +53,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "packageManager": "pnpm@12.16.1"
 }
